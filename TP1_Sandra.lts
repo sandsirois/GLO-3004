@@ -2,7 +2,7 @@
  * \ file Projet1.lts
  * \ Gestion des ressources d'un aeroport
  * \ auteure: Sandra Sirois 990112293
- * \ date 16 février 2017
+ * \ date 16 fÃ©vrier 2017
  */
 
 const A = 2		//nombre d'avions
@@ -28,10 +28,12 @@ TECH = (tget -> tput -> TECH).
 ||PTECH = (tech[m:IT]:TECH).
 
 //Q2
-AVION = (arrive -> [i:IP].pget -> [j:IT].tget -> [k:IG].gget -> atterit -> debarque -> stationne
-		 -> [i].pput -> [j].tput -> [k].gput -> AVION
-		| sort -> [i:IP].pget -> [j:IT].tget  -> [k:IG].gget -> gaze -> embarque -> decolle
-		 -> [i].pput -> [j].tput -> [k].gput -> AVION).
+AVION = (arrive -> [i:IP].pget -> atterit -> [i].pput -> 
+		   [j:IG].gget -> debarque ->[j].gput -> stationne -> AVION
+	| sort ->  [k:IT].tget -> technique -> [k].tput -> 
+		   [l:IF].fget -> gaze -> [l].fput ->
+		   [m:IG].gget -> embarque -> [m].gput ->
+		   [n:IP].pget -> decolle -> [n].pput -> AVION).
 		
 
 ||AVIONS = ([i:IA]:AVION || [i:IA]::PPISTE || [i:IA]::PTECH || [i:IA]::PFUEL || [i:IA]::PGATE).
