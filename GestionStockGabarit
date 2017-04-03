@@ -4,13 +4,13 @@
 //* Created: 09:40:25 on Friday October 8th 2010 UTC
 //*******************************************************
 //////////////////////////////////////////////////////////////////////////
-//  Gabarit - GLO-3004, spécification formelle et vérification, 
+//  Gabarit - GLO-3004, spÃ©cification formelle et vÃ©rification, 
 //////////////////////////////////////////////////////////////////////////
 
 //-- Types de base (abstraits) -------------------------------------------
-// L'énoncé n'indique aucune information concernant les attributs d'un
-//il est alors normal de les considérer comme des types abstraits "tag".
-// Les quantités sont naturellement des entiers naturelles. 
+// L'Ã©noncÃ© n'indique aucune information concernant les attributs d'un
+//il est alors normal de les considÃ©rer comme des types abstraits "tag".
+// Les quantitÃ©s sont naturellement des entiers naturelles. 
 
 class Produit ^= tag;
 class Quantite ^= nat;
@@ -22,7 +22,7 @@ class Quantite ^= nat;
 
 
 //-- Constantes ----------------------------------------------------------
-//  La capacité de stockage est une constante liée aux installations de l'entreprise. 
+//  La capacitÃ© de stockage est une constante liÃ©e aux installations de l'entreprise. 
 
 const 
  capacite : nat ^= 1000;
@@ -37,8 +37,8 @@ const
 //------------------------------------------------------------------------
 // CLASSE Gestiontock
 //------------------------------------------------------------------------
-// L'énoncé indique clairement plusieurs attributs et propriétés relatifs
-// à la gestion de  stock, il est donc normal d'y associer une classe.	
+// L'Ã©noncÃ© indique clairement plusieurs attributs et propriÃ©tÃ©s relatifs
+// Ã  la gestion de  stock, il est donc normal d'y associer une classe.	
 //--------------------------------------------------------------------------
 
 class GestionStock ^= 
@@ -62,13 +62,13 @@ var
 invariant
 
 // Les produits en stock doivent faire partie du marche cibe. 
-// Le domaine de seuil est le même que le domaine de stock,
-// à chaque produit en stock on associe un seuil. 
-// Un renouvellement est associé à chacun des produits en stock.
-// La quantité de chacun des produits ne doit pas dépasser la capacité de stockage fixée d'avance
-// Les seuils ne doivent pas être plus élevés que la capacité de stockage (déduction logique!)
-// La quantité en stock de chaque produit doit être supérieur ou égal au seuil minimal associé 
-// au produit et inférieure ou égal à la capacité.
+// Le domaine de seuil est le mÃªme que le domaine de stock,
+// Ã  chaque produit en stock on associe un seuil. 
+// Un renouvellement est associÃ© Ã  chacun des produits en stock.
+// La quantitÃ© de chacun des produits ne doit pas dÃ©passer la capacitÃ© de stockage fixÃ©e d'avance
+// Les seuils ne doivent pas Ãªtre plus Ã©levÃ©s que la capacitÃ© de stockage (dÃ©duction logique!)
+// La quantitÃ© en stock de chaque produit doit Ãªtre supÃ©rieur ou Ã©gal au seuil minimal associÃ© 
+// au produit et infÃ©rieure ou Ã©gal Ã  la capacitÃ©.
 
 
      stock.dom <<= marcheCible, 
@@ -82,7 +82,7 @@ invariant
   
 interface
 
-// Puisqu'on passe des paramètres lors de l'initialisation. Il faut s'assurer 
+// Puisqu'on passe des paramÃ¨tres lors de l'initialisation. Il faut s'assurer 
 // qu'ils sont conformes aux invariants. 
 
 build{!stock: map of (Produit -> Quantite), !marcheCible :set of (Produit), !seuil:map of (Produit -> Quantite)}
@@ -107,10 +107,10 @@ renouvellement!  =  map of (Produit -> nat) {for p ::stock.dom yield pair of (Pr
 
 schema !achatProduitExistant(p:Produit,q:Quantite)
 
-// Pour pouvoir acheter une quantité q d'un produit existant, 
+// Pour pouvoir acheter une quantitÃ© q d'un produit existant, 
 // Il faut s'assurer que le produit est en stock
-// il faut s'assurer que  le total de la quantité existante plus celle qu'on achète reste 
-// inférieure ou égale à la capacité
+// il faut s'assurer que  le total de la quantitÃ© existante plus celle qu'on achÃ¨te reste 
+// infÃ©rieure ou Ã©gale Ã  la capacitÃ©
 
 pre 
   p in stock.dom,
@@ -124,12 +124,12 @@ post
                                                     
 schema !achatNouveauProduit(p:Produit,q:Quantite,s:Quantite)
 
-// Il faut s'assurer que le produit fait partie du marché cible   
-// Pour pouvoir acheter une quantité q d'un produit p non existant en stock, 
+// Il faut s'assurer que le produit fait partie du marchÃ© cible   
+// Pour pouvoir acheter une quantitÃ© q d'un produit p non existant en stock, 
 // Il faut fournir le seuil  minimal  et il faut s'assurer 
-// qu'il est inférieur ou égal à la capacité                                                               
-// il faut s'assurer que la quantité  qu'on achète est    
-// inférieure ou égale à la capacité et supérieure ou égal au seuil 
+// qu'il est infÃ©rieur ou Ã©gal Ã  la capacitÃ©                                                               
+// il faut s'assurer que la quantitÃ©  qu'on achÃ¨te est    
+// infÃ©rieure ou Ã©gale Ã  la capacitÃ© et supÃ©rieure ou Ã©gal au seuil 
 
                                                                                           
 pre 
@@ -151,9 +151,9 @@ post
 schema !venteProduit(p:Produit,q:Quantite)
 
 // Il faut s'assurer que le produit fait partie du stock  
-// Pour pouvoir vendre une quantité q d'un produit p existant en stock, 
-// Il faut que q soit inférieure ou égale à la capacité 
-// Il faut s'assurer que la quantité qui resterait aprés la vente soit supérieure ou égal au seuil                                                         
+// Pour pouvoir vendre une quantitÃ© q d'un produit p existant en stock, 
+// Il faut que q soit infÃ©rieure ou Ã©gale Ã  la capacitÃ© 
+// Il faut s'assurer que la quantitÃ© qui resterait aprÃ©s la vente soit supÃ©rieure ou Ã©gal au seuil                                                         
 
 pre 
   p in stock.dom,
@@ -168,9 +168,9 @@ post
 schema !venteProduitAchat(p:Produit,q:Quantite)
 
 // Il faut s'assurer que le produit fait partie du stock  
-// Pour pouvoir vendre une quantité q  qui fait baisser le stock en deçà du seuil
-// Il faut s'assurer que la quantité q vendue soit inférieure ou éagle à capacité mois le seuil minimale
-// Il faut commencer par acheter le maximum possible (capacité - stock[p]) puis vendre q. 
+// Pour pouvoir vendre une quantitÃ© q  qui fait baisser le stock en deÃ§Ã  du seuil
+// Il faut s'assurer que la quantitÃ© q vendue soit infÃ©rieure ou Ã©agle Ã  capacitÃ© mois le seuil minimale
+// Il faut commencer par acheter le maximum possible (capacitÃ© - stock[p]) puis vendre q. 
 
     
 pre 
@@ -187,7 +187,7 @@ post
 schema produitsPopulaires(pp!: set of (Produit),q:Quantite)
  
 
-// Il faut récupérer les produits dont le renouvellement est supérieur ou égal à q
+// Il faut rÃ©cupÃ©rer les produits dont le renouvellement est supÃ©rieur ou Ã©gal Ã  q
 
 
 post 
